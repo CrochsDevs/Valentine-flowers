@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>Valentines · a love story</title>
+    <!-- soft, romantic font -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ------------------------------------------------------
+           DREAM VALENTINE'S COSMOS — 1000+ LINES OF PURE HEART 
+           ------------------------------------------------------ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blush-petal: #ffe9f0;
+            --rose-silk: #ffd1dc;
+            --cherry: #ff4d6d;
+            --deep-crimson: #c9184a;
+            --velvet: #800f2f;
+            --champagne-mist: rgba(255, 250, 240, 0.7);
+            --golden-hour: #ffb347;
+            --shadow-pink: rgba(201, 24, 74, 0.25);
+            --glass-edge: rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at 10% 30%, #ffe5ec, #ffc9d9);
+            font-family: 'Quicksand', 'Segoe UI', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            transition: background 1s ease;
+        }
+
+        body.celebration-mode {
+            background: radial-gradient(circle at 80% 20%, #ffdee5, #ffb6c1);
+        }
+
+        /* ---- floating canvas for advanced confetti ---- */
+        #glitterCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        /* ---------- main valentine card (glassmorphism) ---------- */
+        .love-letter {
+            background: rgba(255, 245, 245, 0.55);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 56px 24px 56px 24px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 25px 45px var(--shadow-pink), 0 5px 15px rgba(255, 140, 174, 0.3);
+            padding: 2.8rem 2.2rem;
+            max-width: 650px;
+            width: 90%;
+            margin: 1.2rem;
+            position: relative;
+            z-index: 100;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1.2);
+            border: 2px solid rgba(255, 220, 240, 0.9);
+        }
+
+        .love-letter:hover {
+            box-shadow: 0 35px 60px rgba(201, 24, 74, 0.3);
+            transform: scale(1.01);
+        }
+
+        /* ----- switching scenes ----- */
+        .scene {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            transition: opacity 0.6s ease, transform 0.5s ease;
+        }
+
+        .scene-hidden {
+            display: none !important;
+            opacity: 0;
+            transform: scale(0.96);
+        }
+
+        /* ----- MAIN QUESTION STYLE ----- */
+        .proposal-scene h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, var(--deep-crimson), var(--cherry));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.6rem;
+            text-shadow: 0 8px 20px rgba(255, 77, 109, 0.35);
+            letter-spacing: -0.01em;
+        }
+
+        .cute-tagline {
+            background: rgba(255, 255, 245, 0.7);
+            backdrop-filter: blur(6px);
+            padding: 0.6rem 1.8rem;
+            border-radius: 60px;
+            color: #9d1f3c;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: 2px solid white;
+            margin-bottom: 1.8rem;
+            display: inline-block;
+        }
+
+        /* ----- BUTTON COUPLE ----- */
+        .button-duo {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1.8rem;
+            margin: 2.2rem 0 0.8rem;
+            width: 100%;
+        }
+
+        .btn {
+            border: none;
+            padding: 1rem 2.6rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 200px;
+            background: white;
+            box-shadow: 0 10px 0 rgba(0, 0, 0, 0.02), 0 14px 28px var(--shadow-pink);
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            border: 3px solid transparent;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .btn-yes {
+            background: linear-gradient(125deg, #ff4d6d, #d62828);
+            color: white;
+            text-shadow: 0 2px 5px rgba(80, 0, 20, 0.2);
+            border: 3px solid #ffe6ec;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.14) translateY(-6px);
+            background: linear-gradient(125deg, #ff5e7c, #c9184a);
+            box-shadow: 0 20px 35px #ff8cae;
+        }
+
+        .btn-no {
+            background: rgba(255, 245, 240, 0.85);
+            backdrop-filter: blur(4px);
+            color: #4a3b3f;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        .btn-no:hover {
+            background: #fff9fb;
+            box-shadow: 0 10px 0 #ffd9e2;
+        }
+
+        /* runaway state (absolute, playful) */
+        .btn-no.runaway-style {
+            transition: left 0.12s ease, top 0.12s ease, opacity 0.2s;
+            box-shadow: 0 14px 0 #ffb3c6, 0 20px 35px rgba(201, 24, 74, 0.3);
+            opacity: 0.95;
+            z-index: 999;
+        }
+
+        /* ---------- ACCEPTANCE SCENE — LUXURY DETAIL ---------- */
+        .celebration-scene {
+            text-align: center;
+            width: 100%;
+        } 
+
+        .celebrate-headline {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--deep-crimson);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .invitation-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 48px;
+            padding: 2rem 1.8rem;
+            margin: 1.5rem 0;
+            border: 3px solid white;
+            box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.7);
+        }
+
+        .hotel-name {
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: #a4133c;
+            letter-spacing: -0.5px;
+            line-height: 1.3;
+        }
+
+        .golden-hour-badge {
+            background: var(--cherry);
+            color: white;
+            padding: 0.5rem 2rem;
+            border-radius: 100px;
+            display: inline-block;
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin: 1rem 0 0.5rem;
+            box-shadow: 0 8px 0 #7f1d3b;
+            border: 2px solid #ffe6ec;
+        }
+
+        .secret-portal {
+            display: inline-block;
+            margin-top: 1.3rem;
+            font-size: 2rem;
+            color: var(--deep-crimson);
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 0.5rem 2rem;
+            border-radius: 120px;
+            transition: all 0.35s;
+            border: 3px dashed #ff4d6d;
+            font-weight: 700;
+            backdrop-filter: blur(4px);
+        }
+
+        .secret-portal:hover {
+            background: white;
+            transform: scale(1.1);
+            border: 3px solid var(--deep-crimson);
+            letter-spacing: 4px;
+        }
+
+        /* ----- FLOATING EMOJI BALLOONS ----- */
+        .floatie {
+            position: fixed;
+            bottom: -30px;
+            z-index: 20;
+            pointer-events: none;
+            animation: levitate 8s linear forwards;
+            font-size: 2.4rem;
+            filter: drop-shadow(0 10px 15px rgba(255, 100, 130, 0.3));
+            user-select: none;
+        }
+
+        @keyframes levitate {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+            100% { transform: translateY(-120vh) rotate(20deg); opacity: 0.1; }
+        }
+
+        /* ripple on click */
+        .ripple-spark {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,200,220,0.4) 70%);
+            transform: scale(0);
+            animation: rippleFlow 0.8s ease-out;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @keyframes rippleFlow {
+            to { transform: scale(18); opacity: 0; }
+        }
+
+        /* additional pulse */
+        .pulse-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 56px 24px 56px 24px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            animation: softPulse 3s infinite;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        @keyframes softPulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            70% { transform: scale(1.05); opacity: 0; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+
+        /* responsiveness */
+        @media (max-width: 480px) {
+            .love-letter { padding: 1.8rem; }
+            .proposal-scene h1 { font-size: 2rem; }
+            .btn { padding: 0.8rem 1.5rem; font-size: 1.2rem; }
+            .hotel-name { font-size: 1.6rem; }
+        }
+
+        /* disable no button after yes */
+        .btn-no:disabled {
+            opacity: 0.5;
+            filter: grayscale(0.6);
+            transform: none;
+            pointer-events: none;
+            box-shadow: 0 5px 0 #e6c3c3;
+        }
+
+        /* extra love tag */
+        .floating-signature {
+            position: fixed;
+            bottom: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            opacity: 0.35;
+            z-index: 200;
+            pointer-events: none;
+            rotate: 5deg;
+        }
+    </style>
+</head>
+<body id="mainBody">
+
+    <!-- AUDIO ELEMENT - HINDI NA KAILANGAN I-CLICK PA -->
+    <audio id="bgMusic" preload="auto" loop>
+        <source src="audio/love.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- high-performance confetti canvas (pink galaxy) -->
+    <canvas id="glitterCanvas"></canvas>
+
+    <!-- MAIN CARD :: valentine's heart -->
+    <div class="love-letter">
+        <div class="pulse-glow"></div>
+
+        <!-- SCENE 1: The question -->
+        <div id="sceneQuestion" class="scene proposal-scene">
+            <h1>🌸 will you be <br>my Valentine? 🌸</h1>
+            <span class="cute-tagline">✦  the cutest yes or the sweetest chase  ✦</span>
+            <div class="button-duo">
+                <button id="yesLoveBtn" class="btn btn-yes"><span>❤️</span> Yes!</button>
+                <button id="noRunBtn" class="btn btn-no">🥺 No</button>
+            </div>
+            <p style="margin-top: 2rem; color: #b34167; font-weight: 600; opacity: 0.9;">( the "no" button is shy — try to catch it! )</p>
+        </div>
+
+        <!-- SCENE 2: THE ACCEPTANCE / GRAND REVEAL -->
+        <div id="sceneCelebrate" class="scene celebration-scene scene-hidden">
+            <div class="celebrate-headline">
+                <span>🥰</span>sabi ko na nga ba! <br> Love na love mo ko!<span>🥰</span>
+            </div>
+            <div class="invitation-card">
+                <div style="font-size: 2.4rem; margin-bottom: 0.3rem;">💌</div>
+                <span class="hotel-name">Happy Valentines Mahal ko❤️<br></span>
+                <span class="hotel-name">I LOVE YOU SO MUCH❤️</span>
+                <a href="flowers.html" class="secret-portal">
+                    ❤️ click me! ❤️
+                </a>
+            </div>
+            <div style="display: flex; gap: 0.8rem; justify-content: center; font-size: 2.2rem; margin-top: 0.3rem;">
+                <span>🍓</span> <span>🍰</span> <span>✨</span> <span>🌹</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- small floating signature -->
+    <div class="floating-signature">💗 forever yours</div>
+
+    <script>
+        (function(){
+            "use strict";
+            // -----------------------------------------------------------
+            // ULTIMATE VALENTINE'S DAY INTERACTIVE EXPERIENCE
+            // -----------------------------------------------------------
+            // * runaway "no" button — smooth, bounded, flirty
+            // * canvas confetti + glitter cascade (pink/red galaxy)
+            // * floating heart balloons (emojis)
+            // * ripple effect, sparkles
+            // * ✅ CLICK ME! — plays audio AND opens link at the same time
+            // -----------------------------------------------------------
+
+            // --- DOM elements ---
+            const yesBtn = document.getElementById('yesLoveBtn');
+            const noBtn = document.getElementById('noRunBtn');
+            const sceneQ = document.getElementById('sceneQuestion');
+            const sceneC = document.getElementById('sceneCelebrate');
+            const mainCard = document.querySelector('.love-letter');
+            const magicLink = document.getElementById('magicHeartLink');
+            const bodyEl = document.getElementById('mainBody');
+            const canvas = document.getElementById('glitterCanvas');
+            const audio = document.getElementById('bgMusic');
+            let ctx = canvas.getContext('2d');
+
+            // --- state flags ---
+            let noBtnAbsolute = false;
+            let runawayActive = true;
+            let confettiMode = false;
+            let particlesArray = [];
+
+            // --- resize canvas always ---
+            function resizeGlitterCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeGlitterCanvas);
+            resizeGlitterCanvas();
+
+            // -----------------------------------------------------------
+            // 1. FLOATING BACKGROUND EMOJIS (balloons, hearts, roses)
+            // -----------------------------------------------------------
+            function spawnFloatie() {
+                const emojiBank = ['❤️', '🧡', '💛', '💖', '💘', '💝', '🎈', '🌸', '🌺', '🍓', '✨', '💕', '💞', '🌹', '🥀', '🍰'];
+                const floatEl = document.createElement('div');
+                floatEl.className = 'floatie';
+                floatEl.textContent = emojiBank[Math.floor(Math.random() * emojiBank.length)];
+                floatEl.style.left = Math.random() * 100 + '%';
+                floatEl.style.animationDuration = (Math.random() * 7 + 6) + 's';
+                floatEl.style.fontSize = (Math.random() * 34 + 24) + 'px';
+                floatEl.style.opacity = Math.random() * 0.55 + 0.4;
+                document.body.appendChild(floatEl);
+                setTimeout(() => { floatEl.remove(); }, 13000);
+            }
+            setInterval(spawnFloatie, 240);
+
+            // -----------------------------------------------------------
+            // 2. ULTRA-RUNAWAY NO BUTTON (playful + boundary aware)
+            // -----------------------------------------------------------
+            function evadeCursor() {
+                if (!noBtn || !runawayActive) return;
+
+                if (!noBtnAbsolute) {
+                    noBtn.style.position = 'absolute';
+                    noBtn.classList.add('runaway-style');
+                    noBtnAbsolute = true;
+                }
+
+                const cardRect = mainCard.getBoundingClientRect();
+                const btnRect = noBtn.getBoundingClientRect();
+                
+                const minX = cardRect.left - 40;
+                const maxX = cardRect.right - btnRect.width + 40;
+                const minY = cardRect.top - 40;
+                const maxY = cardRect.bottom - btnRect.height + 60;
+
+                let newX = Math.random() * (maxX - minX) + minX;
+                let newY = Math.random() * (maxY - minY) + minY;
+
+                if (Math.random() < 0.3) {
+                    newX += (Math.random() - 0.5) * 110;
+                    newY += (Math.random() - 0.5) * 90;
+                }
+
+                newX = Math.min(window.innerWidth - btnRect.width - 12, Math.max(12, newX));
+                newY = Math.min(window.innerHeight - btnRect.height - 12, Math.max(12, newY));
+
+                noBtn.style.left = `${newX}px`;
+                noBtn.style.top = `${newY}px`;
+                noBtn.style.transition = 'left 0.13s ease, top 0.13s ease';
+            }
+
+            noBtn.addEventListener('mouseover', function(e) {
+                if (runawayActive) {
+                    evadeCursor();
+                    createMiniHeart(e.clientX, e.clientY);
+                }
+            });
+
+            function createMiniHeart(x, y) {
+                const heartSpan = document.createElement('span');
+                heartSpan.textContent = '❤️';
+                heartSpan.style.position = 'fixed';
+                heartSpan.style.left = x + 'px';
+                heartSpan.style.top = y + 'px';
+                heartSpan.style.fontSize = '2rem';
+                heartSpan.style.pointerEvents = 'none';
+                heartSpan.style.zIndex = '99999';
+                heartSpan.style.animation = 'levitate 1.3s ease-out forwards';
+                heartSpan.style.opacity = '0.9';
+                document.body.appendChild(heartSpan);
+                setTimeout(() => heartSpan.remove(), 1300);
+            }
+
+            // -----------------------------------------------------------
+            // 3. YES BUTTON — CELEBRATION CATALYST 🎉
+            // -----------------------------------------------------------
+            yesBtn.addEventListener('click', function(e) {
+                sceneQ.classList.add('scene-hidden');
+                sceneC.classList.remove('scene-hidden');
+                
+                runawayActive = false;
+                noBtn.disabled = true;
+                noBtn.style.opacity = '0.7';
+                noBtn.innerHTML = '🥰 yes!';
+                noBtn.style.cursor = 'default';
+
+                if (noBtnAbsolute) {
+                    noBtn.style.left = 'calc(80% - 40px)';
+                    noBtn.style.top = 'calc(100% - 130px)';
+                    noBtn.style.position = 'fixed';
+                }
+
+                bodyEl.classList.add('celebration-mode');
+                startConfettiBlizzard();
+                createRippleWave(e.clientX, e.clientY);
+                
+                for (let i=0;i<12;i++) setTimeout(() => { spawnFloatie(); }, i*30);
+            });
+
+            function createRippleWave(x, y) {
+                const rippleDiv = document.createElement('div');
+                rippleDiv.className = 'ripple-spark';
+                rippleDiv.style.left = x + 'px';
+                rippleDiv.style.top = y + 'px';
+                rippleDiv.style.width = '30px';
+                rippleDiv.style.height = '30px';
+                document.body.appendChild(rippleDiv);
+                setTimeout(() => rippleDiv.remove(), 900);
+            }
+
+            // -----------------------------------------------------------
+            // 4. CONFETTI / PARTICLE SYSTEM (pink galaxy)
+            // -----------------------------------------------------------
+            function startConfettiBlizzard() {
+                confettiMode = true;
+                for (let i=0; i<180; i++) {
+                    particlesArray.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height * 0.3 + canvas.height * 0.3,
+                        size: Math.random() * 14 + 5,
+                        color: `hsl(${Math.random() * 20 + 340}, 85%, 68%)`,
+                        speedX: (Math.random() - 0.5) * 5,
+                        speedY: Math.random() * -9 - 3,
+                        life: Math.random() * 80 + 50
+                    });
+                }
+                if (!window.confettiLoop) {
+                    window.confettiLoop = requestAnimationFrame(drawConfettiGlitter);
+                }
+            }
+
+            function drawConfettiGlitter() {
+                if (!ctx) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let alive = false;
+                for (let i=particlesArray.length-1; i>=0; i--) {
+                    const p = particlesArray[i];
+                    ctx.globalAlpha = Math.min(1, p.life / 70);
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size * 0.5, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    p.speedY += 0.13;
+                    p.speedX *= 0.99;
+                    p.life -= 1.2;
+
+                    if (p.life <= 0 || p.y > canvas.height + 30) {
+                        particlesArray.splice(i, 1);
+                    } else {
+                        alive = true;
+                    }
+                }
+                
+                if (alive || particlesArray.length > 0) {
+                    window.confettiLoop = requestAnimationFrame(drawConfettiGlitter);
+                } else {
+                    confettiMode = false;
+                    cancelAnimationFrame(window.confettiLoop);
+                    window.confettiLoop = null;
+                }
+            }
+
+            // -----------------------------------------------------------
+            // 5. ✅ MAGIC LINK — PLAY AUDIO + OPEN LINK + HEART SHOWER
+            // -----------------------------------------------------------
+            magicLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 🎵 I-PLAY ANG AUDIO (dire-diretso na!)
+                audio.volume = 0.5;
+                audio.play().catch(error => {
+                    console.log('Auto-play blocked, trying again...');
+                    // Pag hindi nag-play, try ulit
+                    setTimeout(() => {
+                        audio.play();
+                    }, 100);
+                });
+                
+                // 💖 HEART SHOWER
+                for (let i=0; i<36; i++) {
+                    setTimeout(() => {
+                        const heartEm = document.createElement('div');
+                        heartEm.textContent = '❤️';
+                        heartEm.style.position = 'fixed';
+                        heartEm.style.left = Math.random() * 100 + '%';
+                        heartEm.style.top = Math.random() * 100 + '%';
+                        heartEm.style.fontSize = (Math.random() * 44 + 24) + 'px';
+                        heartEm.style.animation = 'levitate 2.2s ease forwards';
+                        heartEm.style.pointerEvents = 'none';
+                        heartEm.style.zIndex = '9999';
+                        document.body.appendChild(heartEm);
+                        setTimeout(() => heartEm.remove(), 2200);
+                    }, i * 18);
+                }
+                
+                // 🔗 BUKSAN ANG LINK (palitan mo 'to ng actual mong page)
+                setTimeout(() => {
+                    window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+                }, 150);
+            });
+
+            // -----------------------------------------------------------
+            // 6. CLICK ON NO BUTTON
+            // -----------------------------------------------------------
+            noBtn.addEventListener('click', function(e) {
+                if (runawayActive) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    alert('🥺 nice try! but my heart already knows your answer.');
+                    evadeCursor();
+                }
+            });
+
+            // -----------------------------------------------------------
+            // 7. window resize — keep runaway button in sight
+            // -----------------------------------------------------------
+            window.addEventListener('resize', function() {
+                if (noBtnAbsolute && runawayActive && noBtn.style.left) {
+                    let currentLeft = parseFloat(noBtn.style.left) || 100;
+                    let currentTop = parseFloat(noBtn.style.top) || 100;
+                    const btnRect = noBtn.getBoundingClientRect();
+                    currentLeft = Math.min(window.innerWidth - btnRect.width - 15, Math.max(15, currentLeft));
+                    currentTop = Math.min(window.innerHeight - btnRect.height - 15, Math.max(15, currentTop));
+                    noBtn.style.left = `${currentLeft}px`;
+                    noBtn.style.top = `${currentTop}px`;
+                }
+            });
+
+            // -----------------------------------------------------------
+            // 8. subtle mousemove sparkle
+            // -----------------------------------------------------------
+            window.addEventListener('mousemove', function(e) {
+                if (Math.random() < 0.02) {
+                    createMiniHeart(e.clientX, e.clientY);
+                }
+            });
+
+            // -----------------------------------------------------------
+            // 9. initial floaties + canvas adjustment
+            // -----------------------------------------------------------
+            window.addEventListener('load', function() {
+                for (let i=0; i<6; i++) setTimeout(spawnFloatie, i*70);
+                resizeGlitterCanvas();
+                
+                // I-set ang audio
+                audio.volume = 0.5;
+                audio.load();
+            });
+
+            // -----------------------------------------------------------
+            // 10. extra love: heart cascade if you click anywhere
+            // -----------------------------------------------------------
+            mainCard.addEventListener('click', function(e) {
+                if (e.target === magicLink || e.target === yesBtn) return;
+                if (Math.random() < 0.3) createMiniHeart(e.clientX, e.clientY);
+            });
+
+        })();
+    </script>
+
+    <!-- tiny patch to ensure hidden class works -->
+    <style>
+        .scene-hidden {
+            display: none !important;
+        }
+        #sceneCelebrate {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .btn-no:disabled {
+            background: #ffe2e2;
+            color: #6b4b4b;
+            border: 3px solid #ffc2c2;
+        }
+        .secret-portal {
+            cursor: pointer;
+        }
+        body.celebration-mode .love-letter {
+            border: 3px solid white;
+        }
+    </style>
+
+    <!-- decorative corner hearts (fixed) -->
+    <div style="position: fixed; top: 16px; left: 18px; font-size: 2rem; opacity: 0.3; z-index: 200; pointer-events: none;">💗</div>
+    <div style="position: fixed; bottom: 18px; left: 18px; font-size: 2.2rem; opacity: 0.3; z-index: 200; pointer-events: none;">🌸</div>
+    <div style="position: fixed; top: 18px; right: 22px; font-size: 2.2rem; opacity: 0.3; z-index: 200; pointer-events: none; rotate: 10deg;">✨</div>
+</body>
+</html>
